@@ -9,6 +9,7 @@ setup(
         'gym-retro',
         'pyglet==1.3.2',
         'matplotlib',
+        'neo4j',
     ],
     packages=['academy'],
     package_dir={'academy': 'src/academy'},

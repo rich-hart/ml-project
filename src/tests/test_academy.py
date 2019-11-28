@@ -15,6 +15,7 @@ class TestAcademy(unittest.TestCase):
         self.env = None
 
     def target(self, game, render=False):
+        import ipdb; ipdb.set_trace()
         if game in GYM_GAME_LIST:
             self.env = gym.make(game)
         else:
