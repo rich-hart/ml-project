@@ -5,7 +5,10 @@ setup(
     name='TBD',
     install_requires=[
         'scipy',
+        'gym',
         'gym-retro',
+        'pyglet==1.3.2',
+        'matplotlib',
     ],
     packages=['academy'],
     package_dir={'academy': 'src/academy'},
