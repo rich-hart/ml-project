@@ -10,6 +10,7 @@ setup(
         'pyglet==1.3.2',
         'matplotlib',
         'neo4j',
+        'pandas',
     ],
     packages=['academy'],
     package_dir={'academy': 'src/academy'},
