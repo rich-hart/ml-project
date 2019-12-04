@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='TBD',
@@ -12,9 +12,8 @@ setup(
         'neo4j',
         'pandas',
     ],
-    packages=['academy'],
-    package_dir={'academy': 'src/academy'},
-    #package_data={'mypkg': ['data/*.dat']}i,
+    packages=find_packages('src'),
+    package_dir={'':'src'},
     test_suite="src.tests",
     zip_safe=False,
     tests_require=[

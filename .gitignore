@@ -19,3 +19,6 @@ dist/
 *.swp
 *.eggs/
 
+*.db
+
+*.ipynb_checkpoints

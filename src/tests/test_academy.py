@@ -15,7 +15,7 @@ class TestAcademy(unittest.TestCase):
         self.env = None
 
     def target(self, game, render=False):
-        import ipdb; ipdb.set_trace()
+        #import ipdb; ipdb.set_trace()
         if game in GYM_GAME_LIST:
             self.env = gym.make(game)
         else:
@@ -50,7 +50,7 @@ class TestAcademy(unittest.TestCase):
 
     def test_stats_norm(self):
 
-        ipdb.set_trace()
+        #ipdb.set_trace()
         test_distribution = norm(0.0,1.0)
         pass
 #        test_distribution = norm(0.0,1.0)
