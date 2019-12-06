@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
+import subprocess 
+
+subprocess.call("jupyter nbconvert --to script ./src/*/*.ipynb".split())
+
 setup(
     name='TBD',
     install_requires=[
