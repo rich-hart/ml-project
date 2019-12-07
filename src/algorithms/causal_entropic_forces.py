@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[5]:
+
+
+from . import Algorithm
+
+
 # $\textbf{F} \equiv \textrm{the entropic force associated with a macrostate partition}$
 
 # $\textbf{X} \equiv \textrm{macrostate}$
@@ -19,16 +25,36 @@
 
 # NOTE: Figure out how to switch between unsupervised and supervised learning. 
 
-# In[1]:
-
-
-
-
-
 # In[2]:
 
 
+class Entropy:
+    def __call__(self, *args, **kwargs):
+        pass
 
+class Force:
+    def __call__(self, *args, **kwargs):
+        pass
+
+class Macrostate:
+    env = None
+    t_0 = None
+    x_0 = None
+
+    def __init__(self, env=None, x_0=None, t_0=None):
+        pass
+
+class Temperature:
+    def __mul__(self, other):
+        pass
+
+class System:
+    # thermodynamic / probability
+    def __init__(self, *args, **kwargs):
+        pass
+
+class Microstate:
+    pass
 
 
 # project plan
@@ -44,7 +70,7 @@
 
 # start proof
 
-# In[3]:
+# In[ ]:
 
 
 
@@ -56,19 +82,43 @@
 
 # $x(t) \textrm{  for } 0 \leq t \leq \tau \equiv \textrm{microstates}$
 
-# In[5]:
+# In[3]:
 
 
+class CausalPathEntropy(Entropy):
+    def __call__(self, macrostate, tau, *args, **kwargs):
+        pass
 
+class CausalEntropicForce(Force):
+    def __call__(self, macrostate_0, tau=None, *args, **kwargs):
+        pass
+    
+
+class ForceComponent(CausalEntropicForce):
+    j = None
+
+    def __init__(self, j):
+        self.j = j
+    
+    def __call__(self, macrostate_0, tau=None, *args, **kwargs):
+        pass
+
+
+# In[4]:
+
+
+def system_output(t, x_t, u_t):
+    pass
+
+def state_vector_first_derivative(t_0, t, x_t, x_0, u_t):
+    pass
+
+class MaximizeCausalForce(Algorithm):
+    def solve(F, X_0, *args, **kwargs):
+        pass
 
 
 # In[ ]:
-
-
-
-
-
-# In[9]:
 
 
 

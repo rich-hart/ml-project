@@ -1,116 +1,116 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[44]:
+# In[1]:
 
 
+import bayespy
 import gym
 from algorithms import Algorithm
 from datetime import datetime
 
 
-# In[3]:
+# In[2]:
 
 
 env = gym.make('CartPole-v1')
 
 
-# In[4]:
+# In[3]:
 
 
 env.action_space
 
 
-# In[5]:
+# In[4]:
 
 
 help(env.action_space)
 
 
-# In[6]:
+# In[5]:
 
 
 env.action_space.n
 
 
-# In[7]:
+# In[6]:
 
 
 env.observation_space
 
 
-# In[8]:
+# In[7]:
 
 
 help(env.observation_space)
 
 
-# In[9]:
+# In[23]:
 
 
 env.observation_space.shape
 
 
-# In[10]:
+# In[24]:
 
 
 env.observation_space.high
 
 
-# In[11]:
+# In[25]:
 
 
 env.observation_space.low
 
 
-# In[12]:
+# In[26]:
 
 
 len(env.observation_space.shape)
 
 
-# In[13]:
+# In[34]:
 
 
 observation_space_dimention = len(env.observation_space.shape)
 
 
-# In[14]:
+# In[35]:
 
 
 from agents import Agent, Policy, RandomPolicy, RandomAgent, Engineer, Scientist
 
 
 
-
     
 
 
-# In[15]:
+# In[29]:
 
 
 random_agent = RandomAgent(env=env)
 
 
-# In[16]:
+# In[ ]:
 
 
 random_agent
 
 
-# In[17]:
+# In[ ]:
 
 
 random_action = random_agent.policy(env.observation_space.sample())
 
 
-# In[18]:
+# In[ ]:
 
 
 random_action
 
 
-# In[19]:
+# In[ ]:
 
 
 
@@ -157,7 +157,7 @@ class Hypothesis:
     pass
 
 
-# In[20]:
+# In[ ]:
 
 
 class Variable:
@@ -194,19 +194,19 @@ class Knowledge(BayesNetwork):
 
 
 
-# In[21]:
+# In[ ]:
 
 
 #Experiment agent=Random, env = 'CartPole-v1', trials = 10, desciption="question: what effect does a random agent have on the CartPole-v1 enviroment?"
 
 
-# In[22]:
+# In[ ]:
 
 
 # state_0 --> action_0 or action_1  --> state_1 -->> action_0 or action_1 --> ... --> state_n # or state_N
 
 
-# In[23]:
+# In[ ]:
 
 
 scientist = Scientist('scientist')
@@ -218,7 +218,7 @@ scientist = Scientist('scientist')
 
 
 
-# In[24]:
+# In[ ]:
 
 
 class Node:
@@ -233,7 +233,7 @@ class Serializer: #SEE Django, Django RestFramework, neo4j
     pass
 
 
-# In[25]:
+# In[ ]:
 
 
 #NOTE:An algorithm is a procedure for solving a problem in terms of the actions to be executed and the order in which those actions are to be executed. An algorithm is merely the sequence of steps taken to solve a problem. The steps are normally "sequence," "selection, " "iteration," and a case-type statement.
@@ -242,7 +242,7 @@ class Serializer: #SEE Django, Django RestFramework, neo4j
 #NOTE: In C, "sequence statements" are imperatives. The "selection" is the "if then else" statement, and the iteration is satisfied by a number of statements, such as the "while," " do," and the "for," while the case-type statement is satisfied by the "switch" statement.
 
 
-# In[26]:
+# In[ ]:
 
 
 ####
@@ -252,7 +252,7 @@ class Serializer: #SEE Django, Django RestFramework, neo4j
 ####
 
 
-# In[27]:
+# In[ ]:
 
 
 import pandas as pd
@@ -339,7 +339,7 @@ class ExampleExperiment(Experiment):
     pass
 
 
-# In[28]:
+# In[ ]:
 
 
 import sqlite3
@@ -394,7 +394,7 @@ class ExampleDatabase(Database):
     
 
 
-# In[29]:
+# In[ ]:
 
 
 env.close()
@@ -406,13 +406,13 @@ env.close()
 
 
 
-# In[31]:
+# In[ ]:
 
 
 database = ExampleDatabase('example.db')
 
 
-# In[32]:
+# In[ ]:
 
 
 procedure = ExampleProcedure('example')
@@ -423,7 +423,7 @@ random_agent = RandomAgent(env=env, name='random_agent')
 scientist = ExampleScientist('scientist')
 
 
-# In[33]:
+# In[ ]:
 
 
 scientist.conduct(experiment,env,random_agent)
@@ -450,14 +450,14 @@ scientist.conduct(experiment,env,random_agent)
 
 # $s_{n}$ is directly related to $x(t)$ 
 
-# In[34]:
+# In[ ]:
 
 
 experiment.database._conn = sqlite3.connect('example.db')
 scientist.analyze(experiment)
 
 
-# In[35]:
+# In[ ]:
 
 
 # FIXME: put this in analyze
@@ -479,25 +479,25 @@ trials = c.fetchall()
 conn.close()
 
 
-# In[36]:
+# In[ ]:
 
 
 actions
 
 
-# In[37]:
+# In[ ]:
 
 
 observations
 
 
-# In[38]:
+# In[ ]:
 
 
 trials
 
 
-# In[39]:
+# In[ ]:
 
 
 a_reset = -1
@@ -505,25 +505,25 @@ a_0 = 0
 a_1 = 1
 
 
-# In[40]:
+# In[ ]:
 
 
 current_step = -1
 
 
-# In[41]:
+# In[ ]:
 
 
-import bayespy
 
 
-# In[42]:
+
+# In[ ]:
 
 
 action_space = {-1, 0, 1}
 
 
-# In[43]:
+# In[ ]:
 
 
 observations

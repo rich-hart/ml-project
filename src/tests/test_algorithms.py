@@ -8,7 +8,7 @@ from scipy.constants import Boltzmann
 from scipy.stats import norm
 import time
 from agents import Agent, Observation, Action
-from algorithms import MaximizeCausalForce, CausalEntropicForce, Macrostate
+from algorithms.causal_entropic_forces import MaximizeCausalForce, CausalEntropicForce, Macrostate
 
 #GYM_GAME_LIST = [e.id for e in list(gym.envs.registry.all())]
 

@@ -1,4 +1,4 @@
-from algorithms import MaximizeCausalForce, CausalEntropicForce, Macrostate
+from algorithms.causal_entropic_forces import MaximizeCausalForce, CausalEntropicForce, Macrostate
 
 class Brain:
     pass
