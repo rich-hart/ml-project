@@ -63,7 +63,7 @@ from django.db.models.options import Options
 class Movie(DjangoNode):
 #    pk = IntegerField(unique_index=True,name='pk')
 #    id = IntegerField(unique_index=True,name='id')
-    title = StringProperty(unique_index=True, name='title')
+    title = StringProperty(unique_index=True)
 #    released = DateProperty()
 
     class Meta:
@@ -72,7 +72,7 @@ class Movie(DjangoNode):
 class TVShow(DjangoNode):
 #    pk = IntegerField(unique_index=True,name='pk')
 #    id = IntegerField(unique_index=True,name='id')
-    title = StringProperty(unique_index=True,name='title')
+    title = StringProperty(unique_index=True)
 #    released = DateProperty()
     class Meta:
         app_label = 'cinema'

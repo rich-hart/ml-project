@@ -19,7 +19,7 @@ class TestCinema(APITestCase):
     def setUp(self):
         clear_neo4j_database(db)
 
-    @unittest.skip('FIXME: neo4j model not compatable with DjangoREST')
+#    @unittest.skip('FIXME: neo4j model not compatable with DjangoREST')
     def test_post(self):
         #import ipdb; ipdb.set_trace()
         url = reverse('movie-list')
