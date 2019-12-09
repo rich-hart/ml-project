@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_neomodel',
     'cinema',
+    'users',
 ]
 
 REST_FRAMEWORK = {
