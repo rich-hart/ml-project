@@ -103,6 +103,8 @@ class CausalPathEntropy(Entropy):
 # 
 # $$H(X)=-\int_{\chi}f(x)\log{f(x)}dx$$
 # 
+# Change variables and let $x -> x(t)$
+# 
 # (wikipedia, https://en.wikipedia.org/wiki/Differential_entropy)
 
 # can be approximated by producing a histogram of the observations, and then finding the discrete entropy (https://en.wikipedia.org/wiki/Entropy_estimation)
@@ -119,7 +121,11 @@ class CausalEntropicForce(Force):
     def __call__(self, macrostate_0, case, tau=None, T_r=1, T_c=1, *args, **kwargs):
         import ipdb; ipdb.set_trace()
         
+        
         if case=='newtonian':
+            x_0 = macrostate_0.x_0
+            agent = macrostate_0.observer
+            
             force = -1 * 2 * (T_c/T_r) * 1  
         else:
             raise NotImplementedError("No general case defined")

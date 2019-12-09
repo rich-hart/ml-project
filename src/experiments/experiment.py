@@ -1,13 +1,30 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[108]:
 
 
 import bayespy
 import gym
 from algorithms import Algorithm
 from datetime import datetime
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+from bayespy.nodes import (Gaussian,
+                           SwitchingGaussianMarkovChain,
+                           CategoricalMarkovChain,
+                           Categorical,
+                           Dirichlet,
+                           Mixture,
+                           Gamma,
+                           SumMultiply,Wishart)
+
+from bayespy.inference.vmp.vmp import VB
+from bayespy.inference.vmp import transformations
+
+import bayespy.plot as bpplt
 
 
 # In[2]:
@@ -46,37 +63,37 @@ env.observation_space
 help(env.observation_space)
 
 
-# In[23]:
+# In[8]:
 
 
 env.observation_space.shape
 
 
-# In[24]:
+# In[9]:
 
 
 env.observation_space.high
 
 
-# In[25]:
+# In[10]:
 
 
 env.observation_space.low
 
 
-# In[26]:
+# In[11]:
 
 
 len(env.observation_space.shape)
 
 
-# In[34]:
+# In[12]:
 
 
 observation_space_dimention = len(env.observation_space.shape)
 
 
-# In[35]:
+# In[13]:
 
 
 from agents import Agent, Policy, RandomPolicy, RandomAgent, Engineer, Scientist
@@ -86,31 +103,31 @@ from agents import Agent, Policy, RandomPolicy, RandomAgent, Engineer, Scientist
     
 
 
-# In[29]:
+# In[14]:
 
 
 random_agent = RandomAgent(env=env)
 
 
-# In[ ]:
+# In[15]:
 
 
 random_agent
 
 
-# In[ ]:
+# In[16]:
 
 
 random_action = random_agent.policy(env.observation_space.sample())
 
 
-# In[ ]:
+# In[17]:
 
 
 random_action
 
 
-# In[ ]:
+# In[18]:
 
 
 
@@ -157,7 +174,7 @@ class Hypothesis:
     pass
 
 
-# In[ ]:
+# In[19]:
 
 
 class Variable:
@@ -194,19 +211,19 @@ class Knowledge(BayesNetwork):
 
 
 
-# In[ ]:
+# In[20]:
 
 
 #Experiment agent=Random, env = 'CartPole-v1', trials = 10, desciption="question: what effect does a random agent have on the CartPole-v1 enviroment?"
 
 
-# In[ ]:
+# In[21]:
 
 
 # state_0 --> action_0 or action_1  --> state_1 -->> action_0 or action_1 --> ... --> state_n # or state_N
 
 
-# In[ ]:
+# In[22]:
 
 
 scientist = Scientist('scientist')
@@ -218,7 +235,7 @@ scientist = Scientist('scientist')
 
 
 
-# In[ ]:
+# In[23]:
 
 
 class Node:
@@ -233,7 +250,7 @@ class Serializer: #SEE Django, Django RestFramework, neo4j
     pass
 
 
-# In[ ]:
+# In[24]:
 
 
 #NOTE:An algorithm is a procedure for solving a problem in terms of the actions to be executed and the order in which those actions are to be executed. An algorithm is merely the sequence of steps taken to solve a problem. The steps are normally "sequence," "selection, " "iteration," and a case-type statement.
@@ -242,7 +259,7 @@ class Serializer: #SEE Django, Django RestFramework, neo4j
 #NOTE: In C, "sequence statements" are imperatives. The "selection" is the "if then else" statement, and the iteration is satisfied by a number of statements, such as the "while," " do," and the "for," while the case-type statement is satisfied by the "switch" statement.
 
 
-# In[ ]:
+# In[25]:
 
 
 ####
@@ -252,7 +269,7 @@ class Serializer: #SEE Django, Django RestFramework, neo4j
 ####
 
 
-# In[ ]:
+# In[26]:
 
 
 import pandas as pd
@@ -339,7 +356,7 @@ class ExampleExperiment(Experiment):
     pass
 
 
-# In[ ]:
+# In[27]:
 
 
 import sqlite3
@@ -394,7 +411,7 @@ class ExampleDatabase(Database):
     
 
 
-# In[ ]:
+# In[28]:
 
 
 env.close()
@@ -406,13 +423,13 @@ env.close()
 
 
 
-# In[ ]:
+# In[31]:
 
 
 database = ExampleDatabase('example.db')
 
 
-# In[ ]:
+# In[32]:
 
 
 procedure = ExampleProcedure('example')
@@ -423,7 +440,7 @@ random_agent = RandomAgent(env=env, name='random_agent')
 scientist = ExampleScientist('scientist')
 
 
-# In[ ]:
+# In[33]:
 
 
 scientist.conduct(experiment,env,random_agent)
@@ -450,14 +467,14 @@ scientist.conduct(experiment,env,random_agent)
 
 # $s_{n}$ is directly related to $x(t)$ 
 
-# In[ ]:
+# In[34]:
 
 
 experiment.database._conn = sqlite3.connect('example.db')
 scientist.analyze(experiment)
 
 
-# In[ ]:
+# In[35]:
 
 
 # FIXME: put this in analyze
@@ -479,25 +496,25 @@ trials = c.fetchall()
 conn.close()
 
 
-# In[ ]:
+# In[36]:
 
 
 actions
 
 
-# In[ ]:
+# In[96]:
 
 
 observations
 
 
-# In[ ]:
+# In[38]:
 
 
 trials
 
 
-# In[ ]:
+# In[39]:
 
 
 a_reset = -1
@@ -505,7 +522,7 @@ a_0 = 0
 a_1 = 1
 
 
-# In[ ]:
+# In[40]:
 
 
 current_step = -1
@@ -517,16 +534,132 @@ current_step = -1
 
 
 
-# In[ ]:
+# In[41]:
 
 
 action_space = {-1, 0, 1}
 
 
-# In[ ]:
+# In[42]:
 
 
 observations
+
+
+# In[88]:
+
+
+Lambda = Wishart(2, [[1, 0], [0, 1]])
+np.zeros(D)
+np.identity(D)
+
+
+# In[135]:
+
+
+#http://www.bayespy.org/user_api/generated/generated/bayespy.nodes.SwitchingGaussianMarkovChain.html#bayespy-nodes-switchinggaussianmarkovchain
+obs_nodes = {}
+action_nodes = {}
+O_D = int(np.prod(env.observation_space.shape)) # will only work with low dimensions.  Need filter
+if isinstance(env.action_space,gym.spaces.discrete.Discrete):
+    A_D = env.action_space.n
+#mu = np.zeros(D)
+#lambda_ = 1e-5*np.identity(D)
+
+for obs in observations:
+    trial  = obs[0]
+    o_n = obs[1:O_D+1]
+    n = obs[-1]
+    if n in obs_nodes:
+        X = obs_nodes[n]
+    else:
+        mu = Gaussian(np.zeros(O_D), 1e-5*np.identity(O_D))
+        lambda_ =  Wishart(O_D, np.identity(O_D))
+        O_n = Gaussian(mu, lambda_,name = f"O_{n}")
+        obs_nodes[n] = O_n
+    X.observe(o_n)
+
+for action in actions:
+    trial, agent, a_n, n = action
+    if a_n < 0: #action reset
+        continue
+    if n in action_nodes:
+        A = action_nodes[n]
+    else:
+        category_prob = Dirichlet(1e-3*np.ones(A_D),name='category_prob') #FIXME: Unconfirmed!
+        A = Categorical(category_prob)
+        action_nodes[n] = A
+    A.observe(a_n)
+
+    
+
+
+# In[139]:
+
+
+action_nodes[0].__dict__
+
+
+# In[ ]:
+
+
+Dirichlet(1e-3*np.ones(A_D))
+
+
+# In[120]:
+
+
+np.prod(env.action_space.shape)
+
+
+# In[102]:
+
+
+obs_nodes
+
+
+# In[61]:
+
+
+env.observation_space.shape
+
+
+# In[74]:
+
+
+x_n
+
+
+# In[75]:
+
+
+trial
+
+
+# In[77]:
+
+
+n
+
+
+# In[81]:
+
+
+nodes[0].__dict__
+
+
+# In[82]:
+
+
+nodes
+
+
+# In[146]:
+
+
+test_1 =  GaussianARD(np.zeros(O_D), 1e-5*np.identity(O_D))
+test_2 =  Gamma(np.zeros(O_D), 1e-5*np.identity(O_D))
+GaussianARD(test_1,test_2,plates=(2,))
 
 
 # In[ ]:
