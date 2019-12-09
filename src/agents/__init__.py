@@ -31,11 +31,11 @@ class Policy:
 class Observation:
     data = None
     observer = None
-
+    time = None
+    step = None
     def __init__(self, data, observer):
-        data = data
-        observer = observer
-
+        self.data = data
+        self.observer = observer
 
 class Action:
     pass

@@ -23,9 +23,10 @@ class TestEntropicForce(unittest.TestCase):
         import ipdb; ipdb.set_trace()
         obs = self.env.reset()
         F = CausalEntropicForce()
-        X_0 = Macrostate(env=self.env, x_0=obs)
         agent = Agent('test')
         obs = Observation(obs,agent)
-        MaximizeCausalForce(F, X_0)
+        X_0 = Macrostate(env=self.env, x_0=obs)
+        
+        MaximizeCausalForce.solve(F, X_0)
 
 
